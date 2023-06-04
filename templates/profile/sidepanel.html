@@ -1,0 +1,49 @@
+<div class="col-md-3">
+    <div class="profile-sidebar">
+      <!-- SIDEBAR USERPIC -->
+      <div class="profile-userpic">
+        <center>
+          <img src="{{ request.user.profile_pic.url }}" class="img-responsive" alt="" />
+        </center>
+      </div>
+      <!-- END SIDEBAR USERPIC -->
+      <!-- SIDEBAR USER TITLE -->
+      <div class="profile-usertitle">
+        <div class="profile-usertitle-name">{{ request.user.first_name }} {{ request.user.last_name }}</div>
+      </div>
+      <!-- END SIDEBAR USER TITLE -->
+      <!-- SIDEBAR BUTTONS -->
+      <div class="profile-userbuttons">
+        <a href="/change/profile_pic/"><button type="button" class="btn btn-success btn-sm">Update Picture</button></a>
+        <a href="/accounts/logout/"><button type="button" class="btn btn-danger btn-sm">Log Out</button></a>
+      </div>
+
+      <div class="portlet light bordered">
+        <!-- STAT -->
+        <div class="row list-separated profile-stat">
+          <div class="col-md-4 col-sm-4 col-xs-6">
+            <div class="uppercase profile-stat-title">{{ accepted_event.count }}</div>
+            <div class="uppercase profile-stat-text">Accepted Event</div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-6">
+            <div class="uppercase profile-stat-title">{{ assign_event.count }}</div>
+            <div class="uppercase profile-stat-text">Assign Event</div>
+          </div>
+          <div class="col-md-4 col-sm-4 col-xs-6">
+            <div class="uppercase profile-stat-title">{{ rejected_event.count }}</div>
+            <div class="uppercase profile-stat-text">Rejected Event</div>
+          </div>
+        </div>
+        <!-- END STAT -->
+        <div>
+          <h4 class="profile-desc-title">About {{ request.user.first_name }}</h4>
+          <span class="profile-desc-text">{{ request.user.bio }}</span>
+
+          <div class="margin-top-20 profile-desc-link">
+            <i class="fa fa-facebook"></i>
+            <a href="#">{{ request.user.contact_no }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

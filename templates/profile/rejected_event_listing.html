@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <div class="page-heading">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="top-text header-text">
+            <h2>Profile</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row profile">
+      {% include 'profile/sidepanel.html' %}
+      <div class="col-md-9">
+        <div class="profile-content">
+          <table width="100%" border="1px">
+            <tr>
+              <th>S.N</th>
+              <th>Title</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Action</th>
+            </tr>
+            {% for rejected in rejected_event %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ rejected.event.title }}</td>
+                <td>{{ rejected.event.start_date }}</td>
+                <td>{{ rejected.event.end_date }}</td>
+                <td>
+                  <a href="/event/event_detail/{{ rejected.event.id }}"><button class="btn">View</button></a>
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

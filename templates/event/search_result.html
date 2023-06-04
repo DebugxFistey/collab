@@ -1,0 +1,93 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+  <div class="page-heading">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="top-text header-text">
+            <h2>Find Nearby Event &amp; Listing</h2>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <form id="search-form" action="/event/search/" method="get">
+            <div class="row">
+              <div class="col-lg-3 align-self-center">
+                <fieldset>
+                  <input type="text" name="city" class="" placeholder="City" autocomplete="on" />
+                </fieldset>
+              </div>
+              <div class="col-lg-3 align-self-center">
+                <fieldset>
+                  <input type="text" name="state" class="searchText" placeholder="State" autocomplete="on" />
+                </fieldset>
+              </div>
+              <div class="col-lg-3 align-self-center">
+                <fieldset>
+                  <input type="text" name="country" class="" placeholder="Country" autocomplete="on" />
+                </fieldset>
+              </div>
+
+              <div class="col-lg-3">
+                <fieldset>
+                  <button type="submit">Search Now</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-heading">
+            <h2>Result</h2>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          {% for event in results %}
+            <div class="card-media">
+              <!-- media container -->
+              <div class="card-media-object-container">
+                <a href="/event/event_detail/{{ event.id }}/"><div class="card-media-object" style="background-image: url({{ event.image.url }});"></div></a>
+                <span class="card-media-object-tag subtle">{{ event.city }}</span>
+              </div>
+              <!-- body container -->
+              <div class="card-media-body">
+                <div class="card-media-body-top">
+                  <span class="subtle">{{ event.start_date }} - {{ event.end_date }} ({{ event.start_time }} to {{ event.end_time }})</span>
+                </div>
+                <span class="card-media-body-heading"><a href="/event/event_detail/{{ event.id }}/">{{ event.title }}</a></span>
+                <span class="subtle">{{ event.description }}</span>
+                <div class="card-media-body-supporting-bottom">
+                  <span class="card-media-body-supporting-bottom-text subtle">{{ event.location }}</span>
+                  <span class="card-media-body-supporting-bottom-text subtle u-float-right">
+                    Entry Fee:{% if event.price < 0 %}
+                       Free
+                    {% else %}
+                      ${{ event.price }}
+                    {% endif %}
+                  </span>
+                </div>
+                <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
+                  <span class="card-media-body-supporting-bottom-text subtle">
+                    {% for skill in event.skills_required.all %}
+                      #{{ skill }}
+                    {% endfor %}
+                  </span>
+                  <a href="/event/event_detail/{{ event.id }}/" class="card-media-body-supporting-bottom-text card-media-link u-float-right">View More</a>
+                </div>
+              </div>
+            </div>
+            {% empty %}
+            <h6>No result found</h6>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
