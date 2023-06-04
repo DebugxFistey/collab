@@ -10,3 +10,7 @@
   - run project (python manage.py runserver)
 
 ### **Screenshot**
+![1](https://github.com/DebugxFistey/collab/blob/main/screenshots/1.png?raw=true)
+![2](https://github.com/DebugxFistey/collab/blob/main/screenshots/2.png?raw=true)
+![3](https://github.com/DebugxFistey/collab/blob/main/screenshots/3.png?raw=true)
+![4](https://github.com/DebugxFistey/collab/blob/main/screenshots/4.png?raw=true)
